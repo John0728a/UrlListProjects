@@ -1,0 +1,30 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Lists: owner can read/write; anyone can read if published
+    match /lists/{listId} {
+      allow read: if resource.data.published == true
+                  || (request.auth != null && request.auth.uid == resource.data.ownerId);
+      allow create: if request.auth != null
+                    && request.resource.data.ownerId == request.auth.uid;
+      allow update: if request.auth != null
+                    && resource.data.ownerId == request.auth.uid;
+      allow delete: if request.auth != null
+                    && resource.data.ownerId == request.auth.uid;
+    }
+
+    // Slugs: anyone can read (for public lookups); owner of referenced list can write
+    match /slugs/{slug} {
+      allow read: if true;
+      allow create: if request.auth != null
+                    && exists(/databases/$(database)/documents/lists/$(request.resource.data.listId))
+                    && get(/databases/$(database)/documents/lists/$(request.resource.data.listId)).data.ownerId == request.auth.uid;
+      allow update: if request.auth != null
+                    && exists(/databases/$(database)/documents/lists/$(request.resource.data.listId))
+                    && get(/databases/$(database)/documents/lists/$(request.resource.data.listId)).data.ownerId == request.auth.uid;
+      allow delete: if request.auth != null;
+    }
+  }
+}

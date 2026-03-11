@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --color-haru-cream: #F2DFBB;
+  --color-haru-cream-light: #F9F0E0;
+  --color-haru-orange: #F2A649;
+  --color-haru-orange-light: #F5BD76;
+  --color-haru-burnt: #BF5A1F;
+  --color-haru-burnt-light: #D4793F;
+  --color-haru-brown: #734429;
+  --color-haru-brown-light: #8E5E3F;
+  --color-haru-red: #A6270A;
+  --color-haru-red-light: #C4391A;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-haru-cream-light text-haru-brown antialiased;
+  }
+
+  ::selection {
+    @apply bg-haru-orange/30 text-haru-brown;
+  }
+}
