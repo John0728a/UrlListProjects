@@ -3,6 +3,8 @@ import {
   User,
   onAuthStateChanged,
   signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   signOut as firebaseSignOut,
 } from 'firebase/auth';
 import { auth, googleProvider } from '../lib/firebase';
@@ -25,11 +27,31 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUser(user);
       setLoading(false);
     });
+
+    // Complete any pending redirect-based sign-in
+    getRedirectResult(auth).catch(() => {});
+
     return unsubscribe;
   }, []);
 
   const signInWithGoogle = async () => {
-    await signInWithPopup(auth, googleProvider);
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (err: unknown) {
+      const code = (err as { code?: string }).code;
+      if (
+        code === 'auth/popup-blocked' ||
+        code === 'auth/popup-closed-by-user'
+      ) {
+        // Popup genuinely blocked — fall back to full-page redirect
+        await signInWithRedirect(auth, googleProvider);
+        return;
+      }
+      // Ignore duplicate-click cancellation; rethrow anything else
+      if (code !== 'auth/cancelled-popup-request') {
+        throw err;
+      }
+    }
   };
 
   const signOut = async () => {
