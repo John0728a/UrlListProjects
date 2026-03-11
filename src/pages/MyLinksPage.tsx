@@ -27,7 +27,7 @@ export default function MyLinksPage() {
   }, [user]);
 
   const handleDelete = async (list: LinkList) => {
-    if (!confirm('Delete this list? This cannot be undone.')) return;
+    if (!confirm('確定要刪除這個清單嗎？此操作無法復原。')) return;
     try {
       // Delete slug
       if (list.slug) {
@@ -51,12 +51,12 @@ export default function MyLinksPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-2xl font-bold text-haru-brown">My Links</h1>
+        <h1 className="text-2xl font-bold text-haru-brown">我的連結</h1>
         <Link
           to="/"
           className="px-4 py-2 bg-haru-orange text-white text-sm font-medium rounded-lg hover:bg-haru-burnt transition-colors"
         >
-          + New List
+          + 新增清單
         </Link>
       </div>
 
@@ -67,13 +67,13 @@ export default function MyLinksPage() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
             </svg>
           </div>
-          <h2 className="text-lg font-semibold text-haru-brown mb-1">No lists yet</h2>
-          <p className="text-haru-brown/50 mb-6">Create your first link collection to get started.</p>
+          <h2 className="text-lg font-semibold text-haru-brown mb-1">尚無清單</h2>
+          <p className="text-haru-brown/50 mb-6">建立你的第一個連結收藏，馬上開始吧。</p>
           <Link
             to="/"
             className="inline-flex px-5 py-2.5 bg-gradient-to-r from-haru-orange to-haru-burnt text-white font-semibold rounded-xl hover:shadow-md transition-all"
           >
-            Create your first list →
+            建立你的第一個清單 →
           </Link>
         </div>
       ) : (
@@ -89,13 +89,13 @@ export default function MyLinksPage() {
                     to={`/edit/${list.id}`}
                     className="font-bold text-haru-brown hover:text-haru-burnt transition-colors text-lg"
                   >
-                    {list.title || 'Untitled List'}
+                    {list.title || '未命名清單'}
                   </Link>
                   {list.description && (
                     <p className="text-sm text-haru-brown/50 mt-0.5 line-clamp-1">{list.description}</p>
                   )}
                   <div className="flex items-center gap-4 mt-2 text-xs text-haru-brown/40">
-                    <span>{list.items.length} link{list.items.length !== 1 && 's'}</span>
+                    <span>{list.items.length} 個連結</span>
                     <span
                       className={`px-2 py-0.5 rounded-full font-medium ${
                         list.published
@@ -103,7 +103,7 @@ export default function MyLinksPage() {
                           : 'bg-haru-cream text-haru-brown/50'
                       }`}
                     >
-                      {list.published ? 'Published' : 'Draft'}
+                      {list.published ? '已發布' : '草稿'}
                     </span>
                     {list.slug && list.published && (
                       <a
@@ -121,7 +121,7 @@ export default function MyLinksPage() {
                   <Link
                     to={`/edit/${list.id}`}
                     className="p-2 text-haru-brown/30 hover:text-haru-orange transition-colors"
-                    title="Edit"
+                    title="編輯"
                   >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
@@ -130,7 +130,7 @@ export default function MyLinksPage() {
                   <button
                     onClick={() => handleDelete(list)}
                     className="p-2 text-haru-brown/30 hover:text-haru-red transition-colors cursor-pointer"
-                    title="Delete"
+                    title="刪除"
                   >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />

@@ -220,7 +220,7 @@ export default function EditorPage() {
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-2xl font-bold text-haru-brown">Edit List</h1>
+        <h1 className="text-2xl font-bold text-haru-brown">編輯清單</h1>
         <div className="flex items-center gap-3">
           {saving && (
             <span className="text-sm text-haru-brown/40 flex items-center gap-1">
@@ -228,7 +228,7 @@ export default function EditorPage() {
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
               </svg>
-              Saving...
+              儲存中...
             </span>
           )}
           <button
@@ -239,7 +239,7 @@ export default function EditorPage() {
                 : 'bg-haru-cream text-haru-brown hover:bg-haru-orange/20'
             }`}
           >
-            {list.published ? '✓ Published' : 'Publish'}
+            {list.published ? '✓ 已發布' : '發布'}
           </button>
         </div>
       </div>
@@ -251,14 +251,14 @@ export default function EditorPage() {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           onBlur={() => saveList({ title })}
-          placeholder="Give your list a title..."
+          placeholder="為你的清單命名..."
           className="w-full text-xl font-bold text-haru-brown bg-transparent border-b-2 border-haru-cream focus:border-haru-orange outline-none pb-2 transition-colors placeholder-haru-brown/30"
         />
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           onBlur={() => saveList({ description })}
-          placeholder="Add a description (optional)..."
+          placeholder="新增描述（選填）..."
           rows={2}
           className="w-full text-haru-brown/70 bg-transparent border-b border-haru-cream focus:border-haru-orange outline-none pb-2 resize-none transition-colors placeholder-haru-brown/30"
         />
@@ -266,7 +266,7 @@ export default function EditorPage() {
 
       {/* Custom URL / Slug */}
       <div className="mb-8 p-4 bg-white rounded-xl border border-haru-cream">
-        <label className="block text-sm font-medium text-haru-brown/60 mb-2">Custom URL</label>
+        <label className="block text-sm font-medium text-haru-brown/60 mb-2">自訂網址</label>
         <div className="flex gap-2 items-center">
           <span className="text-sm text-haru-brown/40 whitespace-nowrap">
             {window.location.origin}/l/
@@ -279,7 +279,7 @@ export default function EditorPage() {
               setSlugInput(val);
               checkSlug(val);
             }}
-            placeholder="my-cool-list"
+            placeholder="my-link-list"
             className="flex-1 px-3 py-2 text-sm bg-haru-cream-light rounded-lg border border-haru-cream focus:border-haru-orange outline-none text-haru-brown transition-colors"
           />
           <button
@@ -287,15 +287,15 @@ export default function EditorPage() {
             disabled={slugStatus !== 'available' || !slugInput}
             className="px-4 py-2 text-sm font-medium bg-haru-brown text-white rounded-lg hover:bg-haru-burnt transition-colors disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
           >
-            Save
+            儲存
           </button>
         </div>
-        {slugStatus === 'checking' && <p className="text-xs text-haru-brown/40 mt-1">Checking availability...</p>}
-        {slugStatus === 'available' && <p className="text-xs text-green-600 mt-1">✓ Available</p>}
-        {slugStatus === 'taken' && <p className="text-xs text-haru-red mt-1">✗ Already taken</p>}
+        {slugStatus === 'checking' && <p className="text-xs text-haru-brown/40 mt-1">檢查中...</p>}
+        {slugStatus === 'available' && <p className="text-xs text-green-600 mt-1">✓ 可以使用</p>}
+        {slugStatus === 'taken' && <p className="text-xs text-haru-red mt-1">✗ 已被使用</p>}
         {list.published && list.slug && (
           <p className="text-xs text-haru-brown/50 mt-2">
-            Public URL:{' '}
+            公開網址：{' '}
             <a
               href={`/l/${list.slug}`}
               target="_blank"
@@ -315,7 +315,7 @@ export default function EditorPage() {
             type="text"
             value={newUrl}
             onChange={(e) => setNewUrl(e.target.value)}
-            placeholder="Add another link..."
+            placeholder="新增另一個連結..."
             className="flex-1 px-4 py-3 bg-white rounded-xl border border-haru-cream focus:border-haru-orange outline-none text-haru-brown transition-colors placeholder-haru-brown/30"
             disabled={addingUrl}
           />
@@ -324,7 +324,7 @@ export default function EditorPage() {
             disabled={addingUrl || !newUrl.trim()}
             className="px-5 py-3 bg-haru-orange text-white font-medium rounded-xl hover:bg-haru-burnt transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
           >
-            {addingUrl ? '...' : '+ Add'}
+            {addingUrl ? '...' : '+ 新增'}
           </button>
         </div>
       </form>
@@ -335,7 +335,7 @@ export default function EditorPage() {
           <svg className="w-12 h-12 mx-auto mb-3 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
           </svg>
-          <p>No links yet. Add your first link above!</p>
+          <p>尚無連結，在上方新增你的第一個連結！</p>
         </div>
       ) : (
         <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>

@@ -35,7 +35,7 @@ export default function Layout() {
                 to="/my-links"
                 className="text-sm font-medium text-haru-brown/70 hover:text-haru-burnt transition-colors"
               >
-                My Links
+                我的連結
               </Link>
             )}
 
@@ -49,14 +49,14 @@ export default function Layout() {
                   alt=""
                   className="w-7 h-7 rounded-full border-2 border-haru-cream"
                 />
-                Sign Out
+                登出
               </button>
             ) : (
               <button
                 onClick={signInWithGoogle}
                 className="px-4 py-2 bg-haru-brown text-white text-sm font-medium rounded-lg hover:bg-haru-burnt transition-colors cursor-pointer"
               >
-                Sign In
+                登入
               </button>
             )}
           </div>
@@ -71,7 +71,7 @@ export default function Layout() {
       {/* Footer */}
       <footer className="border-t border-haru-cream bg-white/50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 text-center text-sm text-haru-brown/50">
-          © {new Date().getFullYear()} URL LIST — Share your links beautifully.
+          © {new Date().getFullYear()} URL LIST — 精心策劃，美好分享。
         </div>
       </footer>
     </div>

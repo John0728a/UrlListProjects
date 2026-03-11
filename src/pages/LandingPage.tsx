@@ -37,7 +37,7 @@ export default function LandingPage() {
       const docRef = await addDoc(collection(db, 'lists'), {
         ownerId: user.uid,
         slug: '',
-        title: 'My Link List',
+        title: '我的連結清單',
         description: '',
         items: [firstItem],
         published: false,
@@ -69,22 +69,22 @@ export default function LandingPage() {
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
             </svg>
-            Simple. Beautiful. Shareable.
+            簡單。美觀。輕鬆分享。
           </div>
 
           {/* Headline */}
           <h1 className="text-4xl sm:text-6xl font-extrabold text-haru-brown leading-tight tracking-tight">
-            Curate & share your
+            策劃與分享你的
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-haru-orange via-haru-burnt to-haru-red">
-              link collections
+              連結收藏
             </span>
           </h1>
 
           {/* Subtitle */}
           <p className="text-lg sm:text-xl text-haru-brown/60 max-w-2xl mx-auto leading-relaxed">
-            Paste your favorite links, we'll fetch the previews automatically.
-            Arrange them, give them a custom URL, and share with anyone.
+            貼上你喜愛的連結，我們會自動擷取預覽資訊。
+            排列它們、設定專屬網址，輕鬆分享給任何人。
           </p>
 
           {/* URL Input */}
@@ -97,7 +97,7 @@ export default function LandingPage() {
                 type="text"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
-                placeholder="Paste your first link here..."
+                placeholder="在這裡貼上你的第一個連結..."
                 className="flex-1 px-4 py-3 bg-transparent text-haru-brown placeholder-haru-brown/30 focus:outline-none text-base sm:text-lg"
                 disabled={isCreating}
               />
@@ -112,16 +112,16 @@ export default function LandingPage() {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                     </svg>
-                    Creating...
+                    建立中...
                   </span>
                 ) : (
-                  'Create List →'
+                  '建立清單 →'
                 )}
               </button>
             </div>
             {!user && (
               <p className="mt-3 text-sm text-haru-brown/40">
-                You'll be asked to sign in with Google to save your list.
+                需要使用 Google 帳號登入以儲存你的清單。
               </p>
             )}
           </form>
@@ -137,8 +137,8 @@ export default function LandingPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               ),
-              title: 'Auto Previews',
-              desc: 'Paste a URL and we fetch the title, description, and image automatically.',
+              title: '自動預覽',
+              desc: '貼上網址，我們自動擷取標題、描述和圖片。',
             },
             {
               icon: (
@@ -146,8 +146,8 @@ export default function LandingPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                 </svg>
               ),
-              title: 'Drag to Reorder',
-              desc: 'Arrange your links in any order. Drag and drop to get them just right.',
+              title: '拖曳排序',
+              desc: '自由排列你的連結順序，拖放即可輕鬆調整。',
             },
             {
               icon: (
@@ -155,8 +155,8 @@ export default function LandingPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" />
                 </svg>
               ),
-              title: 'Custom URL',
-              desc: 'Choose a memorable slug for your list and share it with a clean URL.',
+              title: '自訂網址',
+              desc: '為你的清單選擇一個好記的短網址，輕鬆分享。',
             },
           ].map((feature, i) => (
             <div

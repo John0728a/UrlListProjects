@@ -52,13 +52,13 @@ export default function PublicListPage() {
     return (
       <div className="max-w-2xl mx-auto px-4 py-20 text-center">
         <div className="text-6xl mb-4">🔗</div>
-        <h1 className="text-2xl font-bold text-haru-brown mb-2">List not found</h1>
-        <p className="text-haru-brown/50 mb-6">This link list doesn't exist or hasn't been published yet.</p>
+        <h1 className="text-2xl font-bold text-haru-brown mb-2">找不到清單</h1>
+        <p className="text-haru-brown/50 mb-6">這個連結清單不存在，或尚未發布。</p>
         <Link
           to="/"
           className="inline-flex px-5 py-2.5 bg-haru-brown text-white font-medium rounded-xl hover:bg-haru-burnt transition-colors"
         >
-          Create your own →
+          建立你自己的清單 →
         </Link>
       </div>
     );
@@ -80,7 +80,7 @@ export default function PublicListPage() {
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
           </svg>
-          {sortedItems.length} link{sortedItems.length !== 1 && 's'}
+          {sortedItems.length} 個連結
         </div>
       </div>
 
@@ -138,12 +138,12 @@ export default function PublicListPage() {
 
       {/* Footer CTA */}
       <div className="mt-12 text-center">
-        <p className="text-sm text-haru-brown/30 mb-2">Made with URL LIST</p>
+        <p className="text-sm text-haru-brown/30 mb-2">使用 URL LIST 製作</p>
         <Link
           to="/"
           className="text-sm text-haru-orange hover:text-haru-burnt font-medium transition-colors"
         >
-          Create your own link list →
+          建立你自己的連結清單 →
         </Link>
       </div>
     </div>
